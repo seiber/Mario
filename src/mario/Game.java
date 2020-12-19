@@ -49,6 +49,7 @@ public class Game extends Canvas implements Runnable
 		g=bs.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);//clear screen
 		
+		//render our tree image
 		g.drawImage(testImage,20,20,null);
 	
 		bs.show();
