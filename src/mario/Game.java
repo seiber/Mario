@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable
 	private Window window;
 	private BufferStrategy bs;
 	private Graphics g;
-	private BufferedImage testImage;
+	
 	
 	public Game(String title, int width, int height)
 	{
@@ -30,7 +30,7 @@ public class Game extends Canvas implements Runnable
 	private void init()
 	{
 		window = new Window(title, width,height);
-		testImage = ImageLoader.loadImage("/textures/Tree.png");
+		Assets.init();
 	}
 	private void tick()
 	{
@@ -49,9 +49,7 @@ public class Game extends Canvas implements Runnable
 		g=bs.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);//clear screen
 		
-		//render our tree image
-		g.drawImage(testImage,20,20,null);
-	
+		g.drawImage(Assets.santa1,10,10,null);
 		bs.show();
 		bs.dispose();
 		
