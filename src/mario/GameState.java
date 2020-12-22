@@ -6,9 +6,10 @@ public class GameState extends State
 {
 	private Player player;
 	
-	public GameState()
+	public GameState(Game game)
 	{
-		player = new Player(100,100);
+		super(game);
+		player = new Player(game,100,100);
 	}
 
 	
@@ -20,7 +21,7 @@ public class GameState extends State
 	
 	public void render(Graphics g)
 	{
-		g.drawImage(Assets.tile, 0, 0, null);
+		//g.drawImage(Assets.tile, 0, 0, null);
 		player.render(g);
 		
 	}

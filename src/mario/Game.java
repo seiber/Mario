@@ -21,6 +21,8 @@ public class Game extends Canvas implements Runnable
 	
 	private State gameState;
 	private State menuState;
+	private KeyManager keyManager;
+	
 	
 	
 	
@@ -29,31 +31,35 @@ public class Game extends Canvas implements Runnable
 		this.width=width;
 		this.height=height;
 		this.title=title;
+		keyManager = new KeyManager();
+		
 	}
 	
 	private void init()
 	{
 		window = new Window(title, width,height);
+		window.getFrame().addKeyListener(keyManager); // adding a key listener to the jframe created above inside the bounds of that window to detect key presses
 		Assets.init();
 		
-		gameState = new GameState();
-		menuState= new MenuState();
+		gameState = new GameState(this);
+		menuState= new MenuState(this);
 		
 		State.setState(gameState);
 		
 	}
 	
-	//int x = 0;
+	
 			
 	private void tick()
 	{
+		keyManager.tick();
 		//if our state is returning a state
 		if (State.getState()!=null)
 		{
 			State.getState().tick();
 		}
 		
-		//x += 1;
+		
 	}
 	
 	private void render()
@@ -68,7 +74,7 @@ public class Game extends Canvas implements Runnable
 		g=bs.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);//clear screen
 		
-		//g.drawImage(Assets.santa1, x,10,null);
+	
 		
 			//if our state is returning a state
 				if (State.getState()!=null)
@@ -121,6 +127,14 @@ public class Game extends Canvas implements Runnable
 		}
 		stop();
 	}
+	
+	
+	
+	public KeyManager getKeyManager()
+	{
+		return keyManager;
+	}
+	
 	
 	public synchronized void start()
 	{

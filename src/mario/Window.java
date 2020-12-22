@@ -38,6 +38,7 @@ public class Window extends Canvas
 		canvas.setPreferredSize(new Dimension(height,width));
 		canvas.setMaximumSize(new Dimension(height,width));
 		canvas.setMinimumSize(new Dimension(height,width));
+		canvas.setFocusable(false);//focus on the specific jframe, allows keypresses to have response
 		frame.add(canvas);
 		frame.pack();
 	}
@@ -46,4 +47,18 @@ public class Window extends Canvas
 	{
 		return canvas;
 	}
+	
+	public JFrame getFrame()
+	{
+		return frame;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

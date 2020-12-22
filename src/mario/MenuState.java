@@ -5,9 +5,9 @@ import java.awt.Graphics;
 public class MenuState extends State
 {
 
-	public MenuState()
+	public MenuState(Game game)
 	{
-		
+		super (game);
 	}
 	
 	public void tick() 

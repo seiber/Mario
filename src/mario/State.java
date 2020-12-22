@@ -16,6 +16,11 @@ public abstract class State
 	}
 	
 	
+	protected Game game;
+	public State(Game game)
+	{
+		this.game=game;
+	}
 	//each game state needs these two methods to function
 	public abstract void tick();
 	public abstract void render(Graphics g);
