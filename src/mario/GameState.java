@@ -23,6 +23,7 @@ public class GameState extends State
 	{
 		//g.drawImage(Assets.tile, 0, 0, null);
 		player.render(g);
+		Tile.tiles[0].render(g, 0, 0);
 		
 	}
 
