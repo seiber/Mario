@@ -16,10 +16,11 @@ public abstract class State
 	}
 	
 	
-	protected Game game;
-	public State(Game game)
+	protected Handler handler;
+	
+	public State(Handler handler)
 	{
-		this.game=game;
+		this.handler=handler;
 	}
 	//each game state needs these two methods to function
 	public abstract void tick();

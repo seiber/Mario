@@ -22,6 +22,7 @@ public class Window extends Canvas
 	
 	private void createDisplay()
 	{
+		
 		frame = new JFrame(title);
 		
 		frame.setPreferredSize(new Dimension(width,height));
@@ -39,12 +40,14 @@ public class Window extends Canvas
 		canvas.setMaximumSize(new Dimension(height,width));
 		canvas.setMinimumSize(new Dimension(height,width));
 		canvas.setFocusable(false);//focus on the specific jframe, allows keypresses to have response
+		
 		frame.add(canvas);
 		frame.pack();
 	}
 	
 	public Canvas getCanvas()
 	{
+		
 		return canvas;
 	}
 	

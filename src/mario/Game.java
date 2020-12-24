@@ -11,7 +11,7 @@ public class Game extends Canvas implements Runnable
 	
 
 	//public static final int WIDTH=640, HEIGHT = WIDTH /12 * 9;
-	public int width,height;
+	private int width,height;
 	public String title;
 	private Thread thread;
 	private boolean running=false;
@@ -22,6 +22,11 @@ public class Game extends Canvas implements Runnable
 	private State gameState;
 	private State menuState;
 	private KeyManager keyManager;
+	
+	private GameCamera gameCamera;
+	
+	private Handler handler;
+	
 	
 	
 	
@@ -37,12 +42,15 @@ public class Game extends Canvas implements Runnable
 	
 	private void init()
 	{
+		
+	
 		window = new Window(title, width,height);
 		window.getFrame().addKeyListener(keyManager); // adding a key listener to the jframe created above inside the bounds of that window to detect key presses
 		Assets.init();
-		
-		gameState = new GameState(this);
-		menuState= new MenuState(this);
+		gameCamera = new GameCamera(this,0,0);
+		handler = new Handler(this);
+		gameState = new GameState(handler);
+		menuState= new MenuState(handler);
 		
 		State.setState(gameState);
 		
@@ -62,16 +70,20 @@ public class Game extends Canvas implements Runnable
 		
 	}
 	
+	
 	private void render()
 	{
+		
+	
 		bs = window.getCanvas().getBufferStrategy(); //creating buffers to display graphics to before the actual computer screen
 		if (bs==null)
 		{
 			window.getCanvas().createBufferStrategy(1);
 			return;
 		}
-		
+	
 		g=bs.getDrawGraphics();
+		
 		g.clearRect(0, 0, WIDTH, HEIGHT);//clear screen
 		
 	
@@ -84,6 +96,7 @@ public class Game extends Canvas implements Runnable
 		
 		
 		bs.show();
+		
 		bs.dispose();
 		
 	}
@@ -135,6 +148,20 @@ public class Game extends Canvas implements Runnable
 		return keyManager;
 	}
 	
+	public GameCamera getGameCamera()
+	{
+		return gameCamera;
+	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	public int getHeight()
+	{
+		return height;
+	}
 	
 	public synchronized void start()
 	{
