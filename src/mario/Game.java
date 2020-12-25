@@ -5,8 +5,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JPanel;
 
-public class Game extends Canvas implements Runnable
+
+public class Game extends JPanel implements Runnable
 {
 	
 
@@ -70,23 +72,26 @@ public class Game extends Canvas implements Runnable
 		
 	}
 	
-	
+
 	private void render()
 	{
-		
+
 	
 		bs = window.getCanvas().getBufferStrategy(); //creating buffers to display graphics to before the actual computer screen
 		if (bs==null)
 		{
-			window.getCanvas().createBufferStrategy(1);
+			
+		window.getCanvas().createBufferStrategy(3); //REMOVING  graphics flickering
+			
 			return;
 		}
 	
 		g=bs.getDrawGraphics();
 		
-		g.clearRect(0, 0, WIDTH, HEIGHT);//clear screen
+		g.clearRect(0, 0, width, height);//clear screen
 		
 	
+		
 		
 			//if our state is returning a state
 				if (State.getState()!=null)
@@ -94,10 +99,12 @@ public class Game extends Canvas implements Runnable
 					State.getState().render(g);
 				}
 		
-		
+		//g.drawImage(Assets.dirt, 10,10,null);
+				
+				
 		bs.show();
 		
-		bs.dispose();
+		//bs.dispose(); //makes bufferstrategy return null
 		
 	}
 	

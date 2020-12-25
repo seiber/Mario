@@ -1,7 +1,10 @@
 package mario;
 
+import java.awt.Canvas;
+import java.awt.Dimension;
+
 import javax.swing.JFrame; 
-import java.awt.*;
+
 
 public class Window extends Canvas
 {
@@ -15,7 +18,6 @@ public class Window extends Canvas
 		this.width=width;
 		this.height=height;
 		this.title=title;
-		
 		createDisplay();
 				
 	}
@@ -24,22 +26,20 @@ public class Window extends Canvas
 	{
 		
 		frame = new JFrame(title);
-		
-		frame.setPreferredSize(new Dimension(width,height));
-		frame.setMaximumSize(new Dimension(width,height));
-		frame.setMinimumSize(new Dimension(width,height));
-		
+		frame.setSize(width,height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		//frame.add(game);
 		frame.setVisible(true);
+
+		
+	
 		
 		canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(height,width));
 		canvas.setMaximumSize(new Dimension(height,width));
 		canvas.setMinimumSize(new Dimension(height,width));
-		canvas.setFocusable(false);//focus on the specific jframe, allows keypresses to have response
+		canvas.setFocusable(false);//focus on the specific jframe, allows keypresses to have response after you click on the game screen
 		
 		frame.add(canvas);
 		frame.pack();
