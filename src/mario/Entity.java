@@ -11,6 +11,11 @@ public abstract class Entity
 	protected Handler handler;
 	protected Rectangle bounds;
 	
+
+	public abstract void tick();
+	public abstract void render(Graphics g);
+
+	
 	public Entity(Handler handler,float x, float y,int width,int height)
 	{
 		this.handler=handler;
@@ -22,11 +27,6 @@ public abstract class Entity
 		
 	}
 	
-	
-	public abstract void tick();
-	public abstract void render(Graphics g);
-
-
 	public float getX() 
 	{
 		return x;
