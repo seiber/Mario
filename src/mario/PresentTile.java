@@ -2,10 +2,10 @@ package mario;
 
 import java.awt.image.BufferedImage;
 
-public class PresentsTile extends Tile
+public class PresentTile extends Tile
 {
 
-	public PresentsTile(int id) 
+	public PresentTile(int id) 
 	{
 		super(Assets.tile, id);
 		

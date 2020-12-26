@@ -42,6 +42,8 @@ public class Game extends JPanel implements Runnable
 		
 	}
 	
+	
+	
 	private void init()
 	{
 		
@@ -49,8 +51,10 @@ public class Game extends JPanel implements Runnable
 		window = new Window(title, width,height);
 		window.getFrame().addKeyListener(keyManager); // adding a key listener to the jframe created above inside the bounds of that window to detect key presses
 		Assets.init();
-		gameCamera = new GameCamera(this,0,0);
+		
 		handler = new Handler(this);
+		gameCamera = new GameCamera(handler,0,0);
+	
 		gameState = new GameState(handler);
 		menuState= new MenuState(handler);
 		
