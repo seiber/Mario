@@ -28,6 +28,11 @@ public class World
 		entityManager.getPlayer().setY(spawnY);
 	}
 	
+	public EntityManager getEntityManager() 
+	{
+		return entityManager;
+	}
+
 	public void tick()
 	{
 		entityManager.tick();
