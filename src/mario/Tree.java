@@ -11,7 +11,7 @@ public class Tree extends StaticEntity
 		bounds.x = 10;
 		bounds.y = (int)(height/1.5f);
 		bounds.width = width - 20;
-		bounds.height = (int) (height-height / 1.1f);
+		bounds.height = (int) (height-height / 1.5f);
 		
 	}
 

@@ -2,12 +2,28 @@ package mario;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class EntityManager 
 {
 	private Handler handler;
 	private Player player;
 	private ArrayList<Entity> entities;
+	private Comparator<Entity> renderSorter = new Comparator<Entity>() 
+	{
+		public int compare(Entity a, Entity b)
+		{
+			if (a.getY()+ a.getHeight() < b.getY() + b.getHeight())
+			{
+				return -1;
+			}
+			else
+			{
+				return 1;
+			}
+		}
+			
+	};
 	
 	
 	public EntityManager(Handler handler, Player player)
@@ -27,7 +43,7 @@ public class EntityManager
 			e.tick();
 		}
 	
-		
+		entities.sort(renderSorter);
 	}
 	
 	public void render (Graphics g)
