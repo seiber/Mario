@@ -21,9 +21,11 @@ public class Game extends JPanel implements Runnable
 	private BufferStrategy bs;
 	private Graphics g;
 	
-	private State gameState;
-	private State menuState;
+	public State gameState;
+	public State menuState;
+	
 	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
 	private GameCamera gameCamera;
 	
@@ -39,6 +41,7 @@ public class Game extends JPanel implements Runnable
 		this.height=height;
 		this.title=title;
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 		
 	}
 	
@@ -50,6 +53,11 @@ public class Game extends JPanel implements Runnable
 	
 		window = new Window(title, width,height);
 		window.getFrame().addKeyListener(keyManager); // adding a key listener to the jframe created above inside the bounds of that window to detect key presses
+		//adding listeners to frame and canvas depending on which is focused
+		window.getFrame().addMouseListener(mouseManager);
+		window.getFrame().addMouseMotionListener(mouseManager);
+		window.getCanvas().addMouseListener(mouseManager);
+		window.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 		
 		handler = new Handler(this);
@@ -58,7 +66,7 @@ public class Game extends JPanel implements Runnable
 		gameState = new GameState(handler);
 		menuState= new MenuState(handler);
 		
-		State.setState(gameState);
+		State.setState(menuState);
 		
 	}
 	
@@ -157,6 +165,12 @@ public class Game extends JPanel implements Runnable
 	public KeyManager getKeyManager()
 	{
 		return keyManager;
+	}
+	
+	public MouseManager getMouseManager()
+	{
+		
+		return mouseManager;
 	}
 	
 	public GameCamera getGameCamera()
