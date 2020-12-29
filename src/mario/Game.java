@@ -116,7 +116,7 @@ public class Game extends JPanel implements Runnable
 				
 		bs.show();
 		
-		//bs.dispose(); //makes bufferstrategy return null
+		//bs.dispose(); //makes bufferstrategy return null also causes screen flickering for some reason
 		
 	}
 	

@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature
 {
 
-	private Animation animDown,animLeft,animRight,animUp;
+	private Animation animDown,animLeft,animRight,animUp,attackRight;
 	
 	//attack timer
 	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
@@ -22,12 +22,12 @@ public class Player extends Creature
 		bounds.width=20;
 		bounds.height=32;
 
-			//every half second
+			//in miliseconds 500 = half sec
 		animUp =new Animation(400,Assets.player_up);
 		animDown = new Animation(400,Assets.player_down);
-		
 		animLeft = new Animation(500, Assets.player_left);
 		animRight = new Animation(500,Assets.player_right);
+		attackRight = new Animation(500,Assets.attack_right);
 		
 	
 	}
@@ -39,6 +39,7 @@ public class Player extends Creature
 		animUp.tick();
 		animLeft.tick();
 		animRight.tick();
+		attackRight.tick();
 		getInput();
 		move();
 		handler.getGameCamera().centerOnEntity(this);
@@ -129,6 +130,7 @@ public class Player extends Creature
 		{
 			xMove=speed;
 		}
+	
 	}
 
 	
@@ -154,6 +156,10 @@ public class Player extends Creature
 			return animLeft.getCurrentFrame();
 		}
 		
+		else if (handler.getKeyManager().aRight)
+		{
+			return attackRight.getCurrentFrame();
+		}
 		else if (xMove > 0)
 		{
 			return animRight.getCurrentFrame();
