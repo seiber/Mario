@@ -7,7 +7,7 @@ public class Assets
 	private static final int width=32,height=32;//width/height of spritesheet images
 	
 	
-	public static BufferedImage santa1,santa2,tile,tree,grass,dirt,santaFemale,santaHat;
+	public static BufferedImage santa1,santa2,tile,tree,grass,dirt,santaFemale,santaHat,christmasTree;
 	public static BufferedImage [] player_down,player_right,player_left,player_up, btn_start, attack_right;
 	
 	
@@ -58,7 +58,7 @@ public class Assets
 		dirt = sheet.crop(160, 0, width, height);
 		santaFemale = sheet.crop(192, 0, width, height);
 		santaHat = sheet.crop(320, 0, width, height);
-		
+		christmasTree = sheet.crop(672, 0, width, height);
 		
 	}
 	

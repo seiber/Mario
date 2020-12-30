@@ -26,12 +26,13 @@ public class Tree extends StaticEntity
 
 	public void render(Graphics g) 
 	{
-		g.drawImage(Assets.tree, (int)(x-handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()),width,height, null);
+		g.drawImage(Assets.christmasTree, (int)(x-handler.getGameCamera().getxOffset()),(int) (y - handler.getGameCamera().getyOffset()),width,height, null);
 	}
 
 	public void die() 
 	{
-		
+		System.err.println("die");
+		handler.getWorld().getItemManager().addItem(Item.presentItem.createNew((int)x,(int)y));
 		
 	}
 

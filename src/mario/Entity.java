@@ -41,8 +41,9 @@ public abstract class Entity
 		if (health <= 0)
 		{
 			active = false;
+			die();
 		}
-		die();
+		
 	}
 	
 	public boolean checkEntityCollisions(float xOffset, float yOffset)

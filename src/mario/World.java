@@ -11,11 +11,13 @@ public class World
 	private int spawnX,spawnY;
 
 	private EntityManager entityManager;
+	private ItemManager itemManager;
 	
 	public World(Handler handler,String path)
 	{
 		this.handler=handler;
 		entityManager = new EntityManager(handler, new Player(handler,100,100));
+		itemManager = new ItemManager(handler);
 		entityManager.addEntity(new Tree(handler,100,250));
 		entityManager.addEntity(new Tree(handler,100,350));
 		entityManager.addEntity(new Tree(handler,100,450));
@@ -35,6 +37,7 @@ public class World
 
 	public void tick()
 	{
+		itemManager.tick();
 		entityManager.tick();
 	}
 	public void render(Graphics g)
@@ -56,7 +59,7 @@ public class World
 			}
 		}
 		
-		
+		itemManager.render(g);
 		entityManager.render(g);
 		
 	}
@@ -95,7 +98,25 @@ public class World
 			
 		}
 	}
-	
+	public Handler getHandler() 
+	{
+		return handler;
+	}
+
+	public void setHandler(Handler handler)
+	{
+		this.handler = handler;
+	}
+
+	public ItemManager getItemManager()
+	{
+		return itemManager;
+	}
+
+	public void setItemManager(ItemManager itemManager) {
+		this.itemManager = itemManager;
+		
+	}
 	public int getWidth()
 	{
 		return width;

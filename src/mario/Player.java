@@ -23,10 +23,14 @@ public class Player extends Creature
 		bounds.height=32;
 
 			//in miliseconds 500 = half sec
+		//movement animations
+		
 		animUp =new Animation(400,Assets.player_up);
 		animDown = new Animation(400,Assets.player_down);
 		animLeft = new Animation(500, Assets.player_left);
 		animRight = new Animation(500,Assets.player_right);
+		
+		//attacking animations (arrow keys)
 		attackRight = new Animation(500,Assets.attack_right);
 		
 	

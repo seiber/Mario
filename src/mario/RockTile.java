@@ -7,7 +7,7 @@ public class RockTile extends Tile
 
 	public RockTile(int id)
 	{
-		super(Assets.tree,id);
+		super(Assets.christmasTree,id);
 		
 	}
 	
