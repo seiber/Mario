@@ -9,10 +9,12 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature
 {
 
-	private Animation animDown,animLeft,animRight,animUp,attackRight;
+	private Animation animDown,animLeft,animRight,animUp,attackRight,idle;
 	
 	//attack timer
 	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+	
+	private Inventory inventory;
 	
 	public Player(Handler handler, float x, float y) 
 	{
@@ -23,15 +25,16 @@ public class Player extends Creature
 		bounds.height=32;
 
 			//in miliseconds 500 = half sec
-		//movement animations
+			//movement animations
 		
 		animUp =new Animation(400,Assets.player_up);
 		animDown = new Animation(400,Assets.player_down);
-		animLeft = new Animation(500, Assets.player_left);
-		animRight = new Animation(500,Assets.player_right);
-		
+		animLeft = new Animation(300, Assets.player_left);
+		animRight = new Animation(300,Assets.player_right);
+		idle = new Animation(500,Assets.idle);
 		//attacking animations (arrow keys)
 		attackRight = new Animation(500,Assets.attack_right);
+		inventory = new Inventory(handler);
 		
 	
 	}
@@ -44,11 +47,13 @@ public class Player extends Creature
 		animLeft.tick();
 		animRight.tick();
 		attackRight.tick();
+		idle.tick();
 		getInput();
 		move();
 		handler.getGameCamera().centerOnEntity(this);
 		
 		checkAttacks();
+		inventory.tick();
 	}
 	
 	
@@ -144,6 +149,7 @@ public class Player extends Creature
 	
 	
 		g.drawImage(getCurrentAnimationFrame(),(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		inventory.render(g);
 		
 //		g.setColor(Color.red);
 //		g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
@@ -153,6 +159,18 @@ public class Player extends Creature
 		
 	}
 	
+	public Inventory getInventory() 
+	{
+		return inventory;
+	}
+
+
+	public void setInventory(Inventory inventory) 
+	{
+		this.inventory = inventory;
+	}
+
+
 	private BufferedImage getCurrentAnimationFrame()
 	{
 		if (xMove < 0)
@@ -172,9 +190,13 @@ public class Player extends Creature
 		{
 			return animUp.getCurrentFrame();
 		}
-		else
+		else if(handler.getKeyManager().down)
 		{
 			return animDown.getCurrentFrame();
+		}
+		else
+		{
+			return idle.getCurrentFrame();
 		}
 		
 		//return animDown.getCurrentFrame();

@@ -68,7 +68,7 @@ public class World
 	{
 		if (x<0|| y<0||x>=width||y>=height)
 		{
-			return Tile.grassTile; //return a grass colored tile if a player is outside the game bounds
+			return Tile.stoneTile; //return a stone colored tile if a player is outside the game bounds
 		}
 		Tile t = Tile.tiles[tiles[x][y]]; //calling two array tiles 1. id of tile at the 2. x,y position
 		if (t==null)

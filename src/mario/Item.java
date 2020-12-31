@@ -1,21 +1,24 @@
 package mario;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Item 
 {
 	
 	public static Item[] items = new Item[256];
-	public static Item presentItem = new Item(Assets.tile, "Presents",0);//change the id for different items
+	public static Item presentItem = new Item(Assets.present, "Presents",0);//change the id for different items
 	
 	
-	public static final int ITEMWIDTH = 32, ITEMHEIGHT =32, PICKED_UP = -1;
+	public static final int ITEMWIDTH = 32, ITEMHEIGHT =32;
 	protected Handler handler;
 	protected BufferedImage texture;
 	protected String name;
 	protected final int id;
 	protected int x,y,count;
+	protected boolean pickedUp = false;
+	protected Rectangle bounds;
 	
 	
 	public Item(BufferedImage texture, String name, int id)
@@ -24,13 +27,26 @@ public class Item
 		this.name = name;
 		this.id = id;
 		count = 1;
+		bounds = new Rectangle (x,y,ITEMWIDTH,ITEMHEIGHT);
 		items[id]=this;
 	}
 	
 	public void tick()
 	{
+		if(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(0f, 0f).intersects(bounds))
+		{
+			pickedUp=true;
+			handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(this);
+		}
+			
 		
 	}
+	
+	public boolean isPickedUp() 
+	{
+		return pickedUp;
+	}
+
 	public Item createNew(int x, int y)
 	{
 		Item i = new Item(texture,name,id);
@@ -41,6 +57,8 @@ public class Item
 	{
 		this.x = x;
 		this.y = y;
+		bounds.x=x;
+		bounds.y=y;
 	}
 	//item rendering in the players inventory
 	public void render(Graphics g, int x, int y)
