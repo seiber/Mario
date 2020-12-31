@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Creature
 {
 
-	private Animation animDown,animLeft,animRight,animUp,attackRight,idle;
+	private Animation animDown,animLeft,animRight,animUp,attackRight,attackLeft,idle;
 	
 	//attack timer
 	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
@@ -34,8 +34,10 @@ public class Player extends Creature
 		idle = new Animation(500,Assets.idle);
 		//attacking animations (arrow keys)
 		attackRight = new Animation(500,Assets.attack_right);
-		inventory = new Inventory(handler);
+		attackLeft = new Animation(400,Assets.attack_left);
 		
+		//inventory
+		inventory = new Inventory(handler);
 	
 	}
 
@@ -47,6 +49,7 @@ public class Player extends Creature
 		animLeft.tick();
 		animRight.tick();
 		attackRight.tick();
+		attackLeft.tick();
 		idle.tick();
 		getInput();
 		move();
@@ -181,6 +184,10 @@ public class Player extends Creature
 		else if (handler.getKeyManager().aRight)
 		{
 			return attackRight.getCurrentFrame();
+		}
+		else if (handler.getKeyManager().aLeft)
+		{
+			return attackLeft.getCurrentFrame();
 		}
 		else if (xMove > 0)
 		{

@@ -13,10 +13,10 @@ public class Window extends Canvas
 	private String title;
 	private Canvas canvas;
 		
-	public Window(String title,int width, int height)
+	public Window(String title,int height,int width)
 	{
-		this.width=width;
 		this.height=height;
+		this.width=width;
 		this.title=title;
 		createDisplay();
 				

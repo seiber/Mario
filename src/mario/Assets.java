@@ -8,7 +8,7 @@ public class Assets
 	
 	
 	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present;
-	public static BufferedImage [] player_down,player_right,player_left,player_up, btn_start, attack_right,idle;
+	public static BufferedImage [] player_down,player_right,player_left,player_up, btn_start, attack_right,attack_left,idle;
 	public static BufferedImage inventoryScreen;
 	
 	
@@ -25,6 +25,10 @@ public class Assets
 		attack_right = new BufferedImage[2];
 		attack_right[0] = sheet.crop(320, 0, width, height);
 		attack_right[1] = sheet.crop(352, 0, width, height);
+		
+		attack_left = new BufferedImage[2];
+		attack_left[0] = sheet.crop(704, 0, width, height);
+		attack_left[1] = sheet.crop(736, 0, width, height);
 		
 		//Sprite animations
 		

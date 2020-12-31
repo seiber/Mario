@@ -8,7 +8,7 @@ public class Item
 {
 	
 	public static Item[] items = new Item[256];
-	public static Item presentItem = new Item(Assets.present, "Presents",0);//change the id for different items
+	public static Item presentItem = new Item(Assets.present,"Presents",0);//change the id for different items
 	
 	
 	public static final int ITEMWIDTH = 32, ITEMHEIGHT =32;

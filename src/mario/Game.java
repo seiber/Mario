@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
 
 import javax.swing.JPanel;
 
@@ -35,10 +36,10 @@ public class Game extends JPanel implements Runnable
 	
 	
 	
-	public Game(String title, int width, int height)
+	public Game(String title, int height, int width)
 	{
-		this.width=width;
 		this.height=height;
+		this.width=width;
 		this.title=title;
 		keyManager = new KeyManager();
 		mouseManager = new MouseManager();
@@ -47,7 +48,7 @@ public class Game extends JPanel implements Runnable
 	
 	
 	
-	private void init()
+	private void init() 
 	{
 		
 	
@@ -64,7 +65,14 @@ public class Game extends JPanel implements Runnable
 		gameCamera = new GameCamera(handler,0,0);
 	
 		gameState = new GameState(handler);
-		menuState= new MenuState(handler);
+		
+		try {
+			menuState= new MenuState(handler);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		State.setState(menuState);
 		

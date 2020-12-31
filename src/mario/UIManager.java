@@ -68,7 +68,7 @@ public class UIManager
 		this.objects = objects;
 	}
 
-	public void addObbject(UIObject o)
+	public void addObject(UIObject o)
 	{
 		objects.add(o);
 		
