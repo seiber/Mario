@@ -9,8 +9,7 @@ public class Item
 	
 	public static Item[] items = new Item[256];
 	public static Item presentItem = new Item(Assets.present,"Presents",0);//change the id for different items
-	
-	
+	public static Item santaHat = new Item(Assets.santaHat,"Santa Hat",1);
 	public static final int ITEMWIDTH = 32, ITEMHEIGHT =32;
 	protected Handler handler;
 	protected BufferedImage texture;
@@ -21,6 +20,8 @@ public class Item
 	protected Rectangle bounds;
 	
 	
+	
+
 	public Item(BufferedImage texture, String name, int id)
 	{
 		this.texture = texture;
@@ -42,11 +43,14 @@ public class Item
 		
 	}
 	
-	public boolean isPickedUp() 
+	public Item createNew(int count)
 	{
-		return pickedUp;
+		Item i = new Item(texture,name,id);
+		i.setPickedUp(true);
+		i.setCount(count);
+		return i;
 	}
-
+	
 	public Item createNew(int x, int y)
 	{
 		Item i = new Item(texture,name,id);
@@ -76,6 +80,15 @@ public class Item
 		render(g,(int)(x - handler.getGameCamera().getxOffset()),(int)(y - handler.getGameCamera().getyOffset()));
 	}
 	
+	public boolean isPickedUp() 
+	{
+		return pickedUp;
+	}
+
+	public void setPickedUp(boolean pickedUp) 
+	{
+		this.pickedUp = pickedUp;
+	}
 	
 	public Handler getHandler() 
 	{

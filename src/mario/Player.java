@@ -69,6 +69,13 @@ public class Player extends Creature
 		{
 			return;
 		}
+		
+		
+		if(inventory.isActive())
+		{
+			return;
+		}
+		
 		//attack rectangle
 		Rectangle cb = getCollisionBounds(0,0);
 		Rectangle ar = new Rectangle();
@@ -123,6 +130,10 @@ public class Player extends Creature
 		xMove=0;
 		yMove=0;
 		
+		if(inventory.isActive())
+		{
+			return;
+		}
 		
 		if(handler.getKeyManager().up)
 		{
@@ -152,14 +163,17 @@ public class Player extends Creature
 	
 	
 		g.drawImage(getCurrentAnimationFrame(),(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()), width, height, null);
-		inventory.render(g);
+		
 		
 //		g.setColor(Color.red);
 //		g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
 //				(int)(y + bounds.y - handler.getGameCamera().getyOffset()),
-//				bounds.width,bounds.height);
-		
-		
+//				bounds.width,bounds.height);	
+		}
+	
+	public void postRender(Graphics g)
+	{
+		inventory.render(g);
 	}
 	
 	public Inventory getInventory() 

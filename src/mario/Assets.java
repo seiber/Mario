@@ -1,5 +1,6 @@
 package mario;
 
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 
 public class Assets 
@@ -10,14 +11,16 @@ public class Assets
 	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present;
 	public static BufferedImage [] player_down,player_right,player_left,player_up, btn_start, attack_right,attack_left,idle;
 	public static BufferedImage inventoryScreen;
+	public static Font font28;
 	
 	
 	
 	public static void init()
 	{
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/spritesheet.png"));
 		
-		inventoryScreen =(ImageLoader.loadImage("/textures/inventorysheet.png"));
+		font28 = FontLoader.loadFont("Res/textures/fonts/slkscr.ttf",28);
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/spritesheet.png"));
+		inventoryScreen =(ImageLoader.loadImage("/textures/rsspritesheet.png"));
 		
 		
 		
@@ -69,8 +72,6 @@ public class Assets
 		snowTree = sheet.crop(640, 0, width, height);
 		present = sheet.crop(672, 0, width, height);
 		
-		//inventory sprite sheet
-		//inventoryScreen = sheet.crop(32, 0, width, height);
 		
 	}
 	
