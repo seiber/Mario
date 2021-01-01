@@ -18,10 +18,15 @@ public class World
 		this.handler=handler;
 		entityManager = new EntityManager(handler, new Player(handler,100,100));
 		itemManager = new ItemManager(handler);
+		
+		//static entities
 		entityManager.addEntity(new Tree(handler,100,250));
 		entityManager.addEntity(new Tree(handler,100,350));
 		entityManager.addEntity(new Tree(handler,100,450));
 		entityManager.addEntity(new Tree(handler,100,550));
+		
+		//creature entities
+		entityManager.addEntity(new Grinch(handler, 400,500));
 		
 		
 		loadWorld(path);

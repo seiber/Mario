@@ -8,9 +8,9 @@ public class Assets
 	private static final int width=32,height=32;//width/height of spritesheet images
 	
 	
-	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present;
+	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present,grinch;
 	public static BufferedImage [] player_down,player_right,player_left,player_up, btn_start, attack_right,attack_left,idle;
-	public static BufferedImage inventoryScreen;
+	public static BufferedImage inventoryScreen,creature;
 	public static Font font28;
 	
 	
@@ -20,7 +20,14 @@ public class Assets
 		
 		font28 = FontLoader.loadFont("Res/textures/fonts/slkscr.ttf",28);
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/spritesheet.png"));
-		inventoryScreen =(ImageLoader.loadImage("/textures/rsspritesheet.png"));
+		SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/textures/creaturespritesheet.png"));
+		inventoryScreen =(ImageLoader.loadImage("/textures/inventoryspritesheet.png"));
+	
+		
+		
+		
+		//creature animations
+		grinch = sheet2.crop(0, 0, width, height);
 		
 		
 		
@@ -71,6 +78,7 @@ public class Assets
 		snowTile = sheet.crop(608, 0, width, height);
 		snowTree = sheet.crop(640, 0, width, height);
 		present = sheet.crop(672, 0, width, height);
+		
 		
 		
 	}

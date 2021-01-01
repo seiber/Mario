@@ -66,6 +66,8 @@ public class Game extends JPanel implements Runnable
 	
 		gameState = new GameState(handler);
 		
+		
+		//Using a URL to display a gif
 		try {
 			menuState= new MenuState(handler);
 		} catch (MalformedURLException e) {
