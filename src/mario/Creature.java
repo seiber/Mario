@@ -1,12 +1,14 @@
 package mario;
 
+import java.util.Random;
+
 public abstract class Creature extends Entity
 {
 	
 	public static final float DEFAULT_SPEED = 3.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 32,
 							DEFAULT_CREATURE_HEIGHT = 32; //pixel height/width
-	
+	private Random rand;
 	
 
 	protected float speed;
@@ -17,6 +19,7 @@ public abstract class Creature extends Entity
 	{
 		super(handler,x, y,width,height);
 			
+		rand = new Random();
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;
@@ -24,7 +27,25 @@ public abstract class Creature extends Entity
 		
 	}
 	
+	public void moveToBoundingBox()
+	{
+		x=400;
+		y=500;
+	//	move();
+	}
 	
+	//creating random enemy movement patterns
+	public void randMovement()
+	{		
+			//need to include negatives for up y movement and left x movement
+			//xMove = rand.nextInt(1+1)-1;// max = 5; min = -5;
+			//yMove = rand.nextInt(1+1)-1;// max = 30; min = -10;
+		
+		//if statment to keep randomizing until they both match up
+			xMove=0.5f;
+			yMove=0.5f;
+			move();	
+	}
 	
 	public void move()
 	{
@@ -101,6 +122,7 @@ public abstract class Creature extends Entity
 		}
 	}
 	
+	//check for solid tile collision such as a Stone tile
 	protected boolean collisionWithTile(int x, int y)
 	{
 		return handler.getWorld().getTile(x, y).isSolid();

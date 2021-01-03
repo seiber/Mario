@@ -13,11 +13,13 @@ public class World
 	private EntityManager entityManager;
 	private ItemManager itemManager;
 	
+	
 	public World(Handler handler,String path)
 	{
 		this.handler=handler;
 		entityManager = new EntityManager(handler, new Player(handler,100,100));
 		itemManager = new ItemManager(handler);
+		
 		
 		//static entities
 		entityManager.addEntity(new Tree(handler,100,250));

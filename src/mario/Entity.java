@@ -48,6 +48,7 @@ public abstract class Entity
 	
 	public boolean checkEntityCollisions(float xOffset, float yOffset)
 	{
+		//looping through all entities, searching for the one that is currently being interacted with
 		for (Entity e : handler.getWorld().getEntityManager().getEntities())
 				{
 					if (e.equals(this))
