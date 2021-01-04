@@ -42,8 +42,12 @@ public abstract class Creature extends Entity
 			//yMove = rand.nextInt(1+1)-1;// max = 30; min = -10;
 		
 		//if statment to keep randomizing until they both match up
-			xMove=0.5f;
-			yMove=0.5f;
+		
+		
+		
+		//grinch starts off moving right and down
+			xMove= 0.5f;
+			yMove= 0.0f;
 			move();	
 	}
 	
