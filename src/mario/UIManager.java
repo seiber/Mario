@@ -28,7 +28,7 @@ public class UIManager
 	{
 		for (UIObject o :objects)
 		{
-			o.render(g);;
+			o.render(g);
 		}
 	}
 	

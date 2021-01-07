@@ -13,23 +13,46 @@ public class MenuState extends State
 {
 
 	private UIManager uiManager;
-	private Sound sound1;
 	
+	private int count =0;
 	Image icon;
+	String audioFilePath = "Res/Textures/Music/ikson.wav";
+	Sound player = new Sound();
+
 	
 	public MenuState(Handler handler) throws MalformedURLException
 	{
 		super (handler);
-		//sound1 = new Sound("Res/textures/sound1.wav");
+		
 		uiManager = new UIManager(handler);
 		
 		
-		
 		handler.getMouseManager().setUIManager(uiManager);
+		//gif link
 		icon = new ImageIcon(new URL("https://i.pinimg.com/originals/b0/45/68/b0456861e9dbf784217a3772748c6101.gif")).getImage();
 		
-		//Sound.sound1.play();
 		
+		//music on or off state		
+		uiManager.addObject(new UIImageButton(400,200,100,100,Assets.music,new ClickListener() 
+		{
+
+			
+			public void onClick() 
+			{
+				
+					
+					player.play(audioFilePath);
+					
+			
+		        //State.setState(handler.getGame().gameState);
+			}
+			
+		
+		}));
+		
+		
+		
+		//start game buttons
 		uiManager.addObject(new UIImageButton(270,200,100,100,Assets.btn_start,new ClickListener() 
 		{
 
@@ -42,6 +65,7 @@ public class MenuState extends State
 				
 			}}));
 		
+		//option menu button
 		uiManager.addObject(new UIImageButton(500,500,100,100,Assets.attack_left,new ClickListener() 
 		{
 
@@ -54,6 +78,22 @@ public class MenuState extends State
 			}}));
 	}
 	
+	
+//	public void startMusic()
+//	{
+//		
+//		if (count == 0)
+//		{
+//			player.play(audioFilePath);
+//			
+//		}
+//		count++;
+//		
+//		
+//		
+//	}
+	
+	
 	public void tick() 
 	{	
 		//System.out.println(handler.getMouseManager().getMouseX() + " " + handler.getMouseManager().getMouseY());
@@ -62,7 +102,8 @@ public class MenuState extends State
 //		{
 //			State.setState(handler.getGame().gameState);
 //		}
-//		
+		
+		
 		uiManager.tick();
 	}
 
@@ -79,6 +120,8 @@ public class MenuState extends State
 		
 		//Christmas hat as a mouse cursor in the menu state
 		g.drawImage(Assets.santaHat, handler.getMouseManager().getMouseX(),handler.getMouseManager().getMouseY(),55,55,null);
+	
+	
 		
 		//g.setColor(Color.red);
 		//g.fillRect(handler.getMouseManager().getMouseX(),handler.getMouseManager().getMouseY(), 50, 50);

@@ -8,7 +8,9 @@ public class Launcher
 	{
 		Game game=new Game("Santa game",600,800);
 		game.start();
-
+		
+		
+        
 	}
 
 }
