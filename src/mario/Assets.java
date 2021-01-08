@@ -8,8 +8,8 @@ public class Assets
 	private static final int width=32,height=32;//width/height of spritesheet images
 	
 	
-	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present,grinch,inventoryScreen,creature,musicOn,musicOff;
-	public static BufferedImage [] player_down,player_right,player_left,player_up, btn_start, attack_right,attack_left,idle,music;
+	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present,grinch,inventoryScreen,creature,musicOn,musicOff,back;
+	public static BufferedImage [] player_down,player_right,player_left,player_up,start, attack_right,attack_left,idle,music,music1,controls,quit;
 	public static Font font28;
 	
 	
@@ -25,10 +25,15 @@ public class Assets
 	
 		
 		
-		//music assets (on or off)
+		//music start button
 		music = new BufferedImage[2];
 		music[0] = sheet3.crop(0, 0, width, height);
 		music[1] = sheet3.crop(0, 0, width, height);
+		
+		//music stop
+		music1 = new BufferedImage[2];
+		music1[0] = sheet3.crop(32, 0, width, height);
+		music1[1] = sheet3.crop(32, 0, width, height);
 		
 		
 //		musicOn = sheet3.crop(0, 0, width, height);
@@ -72,11 +77,26 @@ public class Assets
 		player_up[0] = sheet.crop(256, 0, width, height);
 		player_up[1] = sheet.crop(288, 0, width, height);
 		
-		//start button animations
-		btn_start = new BufferedImage[2];
-		btn_start[0] = sheet.crop(384, 0, width, height);
-		btn_start[1] = sheet.crop(416, 0, width, height);
+					//buttons
 		
+					//start button
+		start = new BufferedImage[2];
+		start[0] = sheet.crop(384, 0, width, height);
+		start[1] = sheet.crop(416, 0, width, height);
+		
+					//control button
+		controls = new BufferedImage[2];
+		controls[0] = sheet.crop(768, 0, width, height);
+		controls[1] = sheet.crop(800, 0, width, height);
+				
+					//quit button
+		quit = new BufferedImage[2];
+		quit[0] = sheet.crop(832, 0, width, height);
+		quit[1] = sheet.crop(864, 0, width, height);
+		
+		
+					//back button
+		back = sheet.crop(896,0, width, height);
 		
 		
 		//crops an image from spritesheet, increment x value by 32 to grab different sprites

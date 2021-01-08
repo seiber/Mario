@@ -26,7 +26,7 @@ public class Sound implements LineListener {
      */
     boolean playCompleted;
     
-     
+     public static Clip audioClip;
     /**
      * Play a given audio file.
      * @param audioFilePath Path of the audio file.
@@ -41,14 +41,14 @@ public class Sound implements LineListener {
  
             DataLine.Info info = new DataLine.Info(Clip.class, format);
  
-            Clip audioClip = (Clip) AudioSystem.getLine(info);
+             audioClip = (Clip) AudioSystem.getLine(info);
  
             audioClip.addLineListener(this);
  
             audioClip.open(audioStream);
              
             audioClip.start();
-//             
+             
 //            while (!playCompleted) {
 //                // wait for the playback completes
 //                try {
@@ -85,7 +85,7 @@ public class Sound implements LineListener {
             
              
         } else if (type == LineEvent.Type.STOP) {
-           // playCompleted = true;
+           playCompleted = true;
             System.out.println("Playback completed.");
         }
  

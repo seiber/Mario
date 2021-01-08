@@ -24,7 +24,7 @@ public class Game extends JPanel implements Runnable
 	
 	public State gameState;
 	public State menuState;
-	public State optionState;
+	public State controlState;
 	
 	private KeyManager keyManager;
 	private MouseManager mouseManager;
@@ -65,6 +65,7 @@ public class Game extends JPanel implements Runnable
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler,0,0);
 	
+		controlState = new ControlMenu(handler);
 		gameState = new GameState(handler);
 		
 		

@@ -8,13 +8,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 public class MenuState extends State
 {
 
 	private UIManager uiManager;
+	private ControlMenu controlMenu;
 	
-	private int count =0;
 	Image icon;
 	String audioFilePath = "Res/Textures/Music/ikson.wav";
 	Sound player = new Sound();
@@ -25,35 +26,42 @@ public class MenuState extends State
 		super (handler);
 		
 		uiManager = new UIManager(handler);
-		
+		controlMenu = new ControlMenu(handler);
 		
 		handler.getMouseManager().setUIManager(uiManager);
 		//gif link
 		icon = new ImageIcon(new URL("https://i.pinimg.com/originals/b0/45/68/b0456861e9dbf784217a3772748c6101.gif")).getImage();
 		
 		
-		//music on or off state		
-		uiManager.addObject(new UIImageButton(400,200,100,100,Assets.music,new ClickListener() 
+		//music on button
+		uiManager.addObject(new UIImageButton(735,450,50,50,Assets.music,new ClickListener() 
+		{
+
+			
+			public void onClick() 
+			{	
+					player.play(audioFilePath);
+					
+					//Sound.audioClip.loop(5);
+
+			}
+		}));
+		
+		//music off button
+		uiManager.addObject(new UIImageButton(735,500,50,50,Assets.music1,new ClickListener() 
 		{
 
 			
 			public void onClick() 
 			{
+					Sound.audioClip.stop();
 				
-					
-					player.play(audioFilePath);
-					
-			
-		        //State.setState(handler.getGame().gameState);
 			}
-			
-		
 		}));
 		
 		
-		
-		//start game buttons
-		uiManager.addObject(new UIImageButton(270,200,100,100,Assets.btn_start,new ClickListener() 
+		//start game button
+		uiManager.addObject(new UIImageButton(270,200,100,100,Assets.start,new ClickListener() 
 		{
 
 			
@@ -65,33 +73,34 @@ public class MenuState extends State
 				
 			}}));
 		
-		//option menu button
-		uiManager.addObject(new UIImageButton(500,500,100,100,Assets.attack_left,new ClickListener() 
+		//controls menu button
+		uiManager.addObject(new UIImageButton(270,300,100,100,Assets.controls,new ClickListener() 
 		{
-
+				
 			
 			public void onClick() 
 			{
 				handler.getMouseManager().setUIManager(null);
-				State.setState(handler.getGame().optionState);
+				State.setState(handler.getGame().controlState);
+				
 				
 			}}));
-	}
 	
 	
-//	public void startMusic()
-//	{
-//		
-//		if (count == 0)
-//		{
-//			player.play(audioFilePath);
-//			
-//		}
-//		count++;
-//		
-//		
-//		
-//	}
+		
+	
+				//quit menu button
+			uiManager.addObject(new UIImageButton(270,400,100,100,Assets.quit,new ClickListener() 
+			{
+
+				
+				public void onClick() 
+				{
+					handler.getMouseManager().setUIManager(null);
+					System.exit(1);
+					
+				}}));
+		}
 	
 	
 	public void tick() 
@@ -110,21 +119,15 @@ public class MenuState extends State
 	
 	public void render(Graphics g) 
 	{
-		
 		//start drawing Christmas background image at origin of screen
 		g.drawImage(icon,0,0,null);
-		
-		
-		
+
 		uiManager.render(g);
-		
+	
+
 		//Christmas hat as a mouse cursor in the menu state
 		g.drawImage(Assets.santaHat, handler.getMouseManager().getMouseX(),handler.getMouseManager().getMouseY(),55,55,null);
 	
-	
-		
-		//g.setColor(Color.red);
-		//g.fillRect(handler.getMouseManager().getMouseX(),handler.getMouseManager().getMouseY(), 50, 50);
 	}
 
 }
