@@ -1,20 +1,19 @@
 package mario;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.ImageObserver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+
 
 public class MenuState extends State
 {
 
 	private UIManager uiManager;
-	private ControlMenu controlMenu;
+	
 	
 	Image icon;
 	String audioFilePath = "Res/Textures/Music/ikson.wav";
@@ -26,7 +25,6 @@ public class MenuState extends State
 		super (handler);
 		
 		uiManager = new UIManager(handler);
-		controlMenu = new ControlMenu(handler);
 		
 		handler.getMouseManager().setUIManager(uiManager);
 		//gif link
@@ -67,6 +65,7 @@ public class MenuState extends State
 			
 			public void onClick() 
 			{
+				//deactivates main menu mouse interaction
 				handler.getMouseManager().setUIManager(null);
 	
 				State.setState(handler.getGame().gameState);
@@ -81,7 +80,9 @@ public class MenuState extends State
 			public void onClick() 
 			{
 				handler.getMouseManager().setUIManager(null);
-				State.setState(handler.getGame().controlState);
+				//State.setState(handler.getGame().controlState);
+				State.setState(handler.getGame().setNewcontrolState(handler.getGame().controlState));
+				
 				
 				
 			}}));
@@ -100,6 +101,7 @@ public class MenuState extends State
 					System.exit(1);
 					
 				}}));
+			
 		}
 	
 	

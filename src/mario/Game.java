@@ -65,9 +65,9 @@ public class Game extends JPanel implements Runnable
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler,0,0);
 	
-		controlState = new ControlMenu(handler);
-		gameState = new GameState(handler);
 		
+		gameState = new GameState(handler);
+		controlState = new ControlState(handler);
 		
 		//Using a URL to display a gif
 		try {
@@ -173,6 +173,21 @@ public class Game extends JPanel implements Runnable
 	}
 	
 	
+	public State setNewcontrolState(State controlState)
+	{
+		return controlState = new ControlState(handler);
+	}
+	
+	public State setNewmenuState(State menuState)
+	{
+		try {
+			return menuState = new MenuState(handler);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return menuState;
+	}
 	
 	public KeyManager getKeyManager()
 	{

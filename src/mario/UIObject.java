@@ -31,10 +31,12 @@ public abstract class UIObject
 	{
 		if (bounds.contains(e.getX(),e.getY()))
 		{
+			System.out.println("hoveringggggg");
 			hovering = true;
 		}
 		else
 			hovering=false;
+		
 	}
 	
 	public void onMouseRelease(MouseEvent e)

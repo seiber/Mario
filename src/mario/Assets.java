@@ -8,8 +8,8 @@ public class Assets
 	private static final int width=32,height=32;//width/height of spritesheet images
 	
 	
-	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present,grinch,inventoryScreen,creature,musicOn,musicOff,back;
-	public static BufferedImage [] player_down,player_right,player_left,player_up,start, attack_right,attack_left,idle,music,music1,controls,quit;
+	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present,grinch,inventoryScreen,creature,musicOn,musicOff;
+	public static BufferedImage [] player_down,player_right,player_left,player_up,start, attack_right,attack_left,idle,music,music1,controls,quit,back;
 	public static Font font28;
 	
 	
@@ -36,9 +36,10 @@ public class Assets
 		music1[1] = sheet3.crop(32, 0, width, height);
 		
 		
-//		musicOn = sheet3.crop(0, 0, width, height);
-//		musicOff = sheet3.crop(32, 0, width, height);
-//		
+		//back button
+		back = new BufferedImage[2];
+		back[0] = sheet.crop(896, 0, width, height);
+		back[1] = sheet.crop(928, 0, width, height);
 		
 		//creature animations
 		grinch = sheet2.crop(0, 0, width, height);
@@ -58,8 +59,8 @@ public class Assets
 		
 		idle = new BufferedImage[3];
 		idle[0] = sheet.crop(0, 0, width, height);
-		idle[1] = sheet.crop(32, 0, width, height);
-		idle[2] = sheet.crop(64, 0, width, height);
+		idle[1] = sheet.crop(32, 0, width, height); 
+		idle[2] = sheet.crop(64, 0, width, height); 
 		
 		player_down = new BufferedImage[2];
 		player_down[0] = sheet.crop(448, 0, width, height);
@@ -95,8 +96,8 @@ public class Assets
 		quit[1] = sheet.crop(864, 0, width, height);
 		
 		
-					//back button
-		back = sheet.crop(896,0, width, height);
+				
+		
 		
 		
 		//crops an image from spritesheet, increment x value by 32 to grab different sprites
