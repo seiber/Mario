@@ -53,7 +53,6 @@ public class MouseManager implements MouseListener, MouseMotionListener
 		if (uiManager !=null)
 		{
 			uiManager.onMouseMoved(e);
-			System.out.println("Mouse moved");
 		}
 	}
 
@@ -70,7 +69,6 @@ public class MouseManager implements MouseListener, MouseMotionListener
 		if (e.getButton()== MouseEvent.BUTTON1)
 		{
 			leftPressed = true;
-			System.out.println("left press");
 		}
 		//right mouse button
 		else if (e.getButton()==MouseEvent.BUTTON3)

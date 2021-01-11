@@ -1,5 +1,6 @@
 package mario;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -37,49 +38,34 @@ public class ControlState extends State
 	}));
 	}
 	
+	
+	public void drawUserControls(Graphics g)
+	{
+		String movement = "Character movement: (w,a,s,d)";
+		String attack = "Attacks: HOLD (left arrow) to throw a left punch, (right arrow) to throw a snowball";
+		String inventory = "Inventory: press (e) to toggle, and use (up) or (down) arrow keys to scroll through the inventory";
+		String gamePlay = "How to play: Collect items from killing trees, or Grinch (make sure you are close enough to the target!)";
+		
+		g.setColor(Color.MAGENTA);
+		g.drawString(gamePlay, 230, 200);
+		g.drawString(movement, 230, 250);
+		g.drawString(attack, 230, 300);
+		g.drawString(inventory, 230, 350);
+	
+		
+	}
+	
 	public void tick() 
 	{
-		//buttonBounds();
-		//clicked();
+
 			uiManager.tick();
-	
 	}
 
 	
 	public void render(Graphics g) 
 	{
-		//user controls
-		//how to play
-		//back button
-
 		uiManager.render(g);
-		//create rectangle around back button// check for clicks inside bounds
-		//g.drawRect(33, 493, 80, 50);
-		
-		
-	}
-
-	
-	
-	
-	
-	
-	
-	//sets the back button bounds
-		public void buttonBounds()
-		{
-			//rectangle.setBounds(30, 490, 80, 50);
-		}
-	
-	//checking to see if the the mouse is in position and left mouse button is released around the back button
-	public void clicked()
-	{
-		
-		//if(rectangle.contains(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY()))
-		{
-			//handler.getMouseManager().mouseReleased(e);
-		}
-	
+		drawUserControls(g);
 	}
 
 }

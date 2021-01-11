@@ -178,6 +178,10 @@ public class Game extends JPanel implements Runnable
 		return controlState = new ControlState(handler);
 	}
 	
+	public State setNewgameState(State gameState)
+	{
+		return gameState = new GameState(handler);
+	}
 	public State setNewmenuState(State menuState)
 	{
 		try {

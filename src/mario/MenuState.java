@@ -1,6 +1,8 @@
 package mario;
 
 
+
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.net.MalformedURLException;
@@ -13,7 +15,7 @@ public class MenuState extends State
 {
 
 	private UIManager uiManager;
-	
+	private Thread t1 = new Thread(new Sound());
 	
 	Image icon;
 	String audioFilePath = "Res/Textures/Music/ikson.wav";
@@ -38,12 +40,12 @@ public class MenuState extends State
 			
 			public void onClick() 
 			{	
-					player.play(audioFilePath);
-					
-					//Sound.audioClip.loop(5);
-
+				t1.start();
+				//player.play(audioFilePath);
+			
 			}
-		}));
+			
+			}));
 		
 		//music off button
 		uiManager.addObject(new UIImageButton(735,500,50,50,Assets.music1,new ClickListener() 
@@ -52,8 +54,8 @@ public class MenuState extends State
 			
 			public void onClick() 
 			{
-					Sound.audioClip.stop();
-				
+					
+					Sound.audioClip.close();
 			}
 		}));
 		
@@ -68,7 +70,7 @@ public class MenuState extends State
 				//deactivates main menu mouse interaction
 				handler.getMouseManager().setUIManager(null);
 	
-				State.setState(handler.getGame().gameState);
+				State.setState(handler.getGame().setNewgameState(handler.getGame().gameState));
 				
 			}}));
 		
