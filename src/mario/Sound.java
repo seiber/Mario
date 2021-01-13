@@ -26,6 +26,7 @@ public class Sound implements Runnable
      public static Clip audioClip;
      String audioFilePath = "Res/Textures/Music/ikson.wav";
      public static boolean playCompleted;
+     public static boolean exit = false;
     
      
      
@@ -69,25 +70,14 @@ public class Sound implements Runnable
                 }
            }
            
-           //System.out.println("song length:"+audioClip.getMicrosecondLength() +" "+ "current position in song: " +audioClip.getMicrosecondPosition());
-           
-           //if song length duration >= current duration
-          
-             
-           
+
            	if(playCompleted=true)
            	{
            		
            		System.out.println("play completed" + Thread.currentThread());
-           		
-           	 audioClip.close();
-             
+           		audioClip.close();
            	}
-           
-           
-    
-            
-          
+           	
              
         } catch (UnsupportedAudioFileException ex) {
             System.out.println("The specified audio file is not supported.");
@@ -124,6 +114,10 @@ public class Sound implements Runnable
 		
 	
 	}
+	  public void stop() 
+	    { 
+	        exit = true; 
+	    } 
 		
 	}
 

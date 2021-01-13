@@ -15,11 +15,12 @@ public class MenuState extends State
 {
 
 	private UIManager uiManager;
-	private Thread t1; 
+	
 	
 	Image icon;
 	String audioFilePath = "Res/Textures/Music/ikson.wav";
 	Sound player = new Sound();
+	public static Thread t1;
 
 	
 	public MenuState(Handler handler) throws MalformedURLException
@@ -27,7 +28,7 @@ public class MenuState extends State
 		super (handler);
 		
 		uiManager = new UIManager(handler);
-		t1= new Thread(new Sound());
+		t1 = new Thread(new Sound());
 		handler.getMouseManager().setUIManager(uiManager);
 		//gif link
 		icon = new ImageIcon(new URL("https://i.pinimg.com/originals/b0/45/68/b0456861e9dbf784217a3772748c6101.gif")).getImage();
@@ -40,9 +41,16 @@ public class MenuState extends State
 			
 			public void onClick() 
 			{	
-				t1.start();
-				//player.play(audioFilePath);
-			
+				t1 = new Thread(new Sound());
+				Sound.playCompleted=false;
+		
+				if(!t1.isAlive())
+				{
+					System.out.println("thread not alive, starting");
+					System.out.println(t1.getState());
+					t1.start();
+					
+				}	
 			}
 			
 			}));
@@ -56,8 +64,7 @@ public class MenuState extends State
 			{
 					t1.interrupt();
 					Sound.playCompleted=true;
-					
-					
+									
 			}
 		}));
 		
