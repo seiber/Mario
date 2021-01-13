@@ -25,7 +25,8 @@ public class Sound implements Runnable
 {
      public static Clip audioClip;
      String audioFilePath = "Res/Textures/Music/ikson.wav";
-     private boolean playCompleted;
+     public static boolean playCompleted;
+    
      
      
   
@@ -43,24 +44,48 @@ public class Sound implements Runnable
  
             audioClip = (Clip) AudioSystem.getLine(info);
             
-       
+      
             audioClip.open(audioStream);
             
-         
+            	
             audioClip.start();
             
             
-   
-            while (!audioClip.isRunning()) {
+        
+       
+           while (!playCompleted) {
                 // wait for the playback completes
+        	    System.out.println("song length:"+audioClip.getMicrosecondLength() +" "+ "current position in song: " +audioClip.getMicrosecondPosition());
+        	   //System.out.println("song playing");
+        	   if(audioClip.getMicrosecondLength()== audioClip.getMicrosecondPosition())
+               {
+            	   playCompleted=true;
+            	   break;
+               }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
-            }
+           }
+           
+           //System.out.println("song length:"+audioClip.getMicrosecondLength() +" "+ "current position in song: " +audioClip.getMicrosecondPosition());
+           
+           //if song length duration >= current duration
+          
              
-           // audioClip.close();
+           
+           	if(playCompleted=true)
+           	{
+           		
+           		System.out.println("play completed" + Thread.currentThread());
+           		
+           	 audioClip.close();
+             
+           	}
+           
+           
+    
             
           
              
