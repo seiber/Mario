@@ -73,7 +73,6 @@ public class Sound implements Runnable
 
            	if(playCompleted=true)
            	{
-           		
            		System.out.println("play completed" + Thread.currentThread());
            		audioClip.close();
            	}

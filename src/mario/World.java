@@ -27,6 +27,9 @@ public class World
 		entityManager.addEntity(new Tree(handler,100,450));
 		entityManager.addEntity(new Tree(handler,100,550));
 		
+		entityManager.addEntity(new Tree(handler,100,750));
+		entityManager.addEntity(new Tree(handler,100,650));
+		
 		//creature entities
 		entityManager.addEntity(new Grinch(handler, 400,500));
 		
