@@ -5,18 +5,18 @@ import java.awt.Rectangle;
 
 public class Grinch extends Creature
 {
-	Rectangle boundingBox1 = new Rectangle();
-	Rectangle boundingBox2 = new Rectangle();
-	Rectangle boundingBox3 = new Rectangle();
-	Rectangle boundingBox4 = new Rectangle();
+//	Rectangle boundingBox1 = new Rectangle();
+//	Rectangle boundingBox2 = new Rectangle();
+//	Rectangle boundingBox3 = new Rectangle();
+//	Rectangle boundingBox4 = new Rectangle();
 	
-	
+	EnemyWanderBounds e;
 	Rectangle grinch = new Rectangle();
 
 	public Grinch(Handler handler, float x, float y) 
 	{
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH,Creature.DEFAULT_CREATURE_HEIGHT);
-		
+		e = new EnemyWanderBounds(handler, x, y, width, height);
 		
 		//creating grinch collision bounds
 		bounds.x=16;
@@ -35,42 +35,45 @@ public class Grinch extends Creature
 	}
 	
 	
-	public void createBounds()
-	{
-		//bounding box where grinch can wander
-		boundingBox1.setBounds(400,500,70,70);
-		boundingBox2.setBounds(650,500,70,70);
-		boundingBox3.setBounds(400,430,400,70);
-		boundingBox4.setBounds(430,500,270,70);
-				
-		//our grinch character basically has an invisible rectangle surrounding him
-		grinch.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
-	}
+//	public void createBounds()
+//	{
+//		//bounding box where grinch can wander
+//		boundingBox1.setBounds(400,500,70,70);
+//		boundingBox2.setBounds(650,500,70,70);
+//		boundingBox3.setBounds(400,430,400,70);
+//		boundingBox4.setBounds(430,500,270,70);
+//				
+//		//our grinch character basically has an invisible rectangle surrounding him
+//		grinch.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
+//	}
 	
 	//checking the bounds to make sure grinch is in the correct location
 	public void checkBounds()
 	{	
-		createBounds();
+		grinch.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
+		e.createBounds();
+		//createBounds();
 		
+	
 		// if the bonding box area and grinch intersect, grinch is in the proper wandering space
-		if (boundingBox1.contains(grinch))
+		if (e.boundingBox1.contains(grinch))
 		{
 			x++;
 			System.out.println("bbox1");
 		}
 		
-		else if (boundingBox2.contains(grinch))
+		else if (e.boundingBox2.contains(grinch))
 		{
 			y-=35;
 			System.out.println("bbox2");
 		}
-		else if (boundingBox3.contains(grinch))
+		else if (e.boundingBox3.contains(grinch))
 		{
 			x--;
 			System.out.println("bbox3");
 		}
 		
-		else if (boundingBox4.contains(grinch))
+		else if (e.boundingBox4.contains(grinch))
 		{
 			System.out.println("bbox4");
 			x++;
@@ -90,16 +93,19 @@ public class Grinch extends Creature
 		g.drawImage(Assets.grinch, (int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height, null);
 		//grinch rectangle
 		g.drawRect((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height);
-		//start box 1
-		g.drawRect(400,500,70,70);
-		//g.drawRect((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),300,400);
-		//end box 2
-		g.drawRect(650,500,70,70);
-		//box3
-		g.drawRect(400,430,400,70);
-		//box4
-		g.drawRect(430,500,270,70);
 		
+		e.render(g);
+		
+//		//start box 1
+//		g.drawRect(400,500,70,70);
+//		//g.drawRect((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),300,400);
+//		//end box 2
+//		g.drawRect(650,500,70,70);
+//		//box3
+//		g.drawRect(400,430,400,70);
+//		//box4
+//		g.drawRect(430,500,270,70);
+//		
 		
 	}
 
