@@ -8,7 +8,7 @@ public class Assets
 	private static final int width=32,height=32;//width/height of spritesheet images
 	
 	
-	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present,grinch,inventoryScreen,creature,musicOn,musicOff;
+	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present,grinch,inventoryScreen,creature,musicOn,musicOff,whiteTile,blackTile;
 	public static BufferedImage [] player_down,player_right,player_left,player_up,start, attack_right,attack_left,idle,music,music1,controls,quit,back;
 	public static Font font28;
 	
@@ -108,6 +108,8 @@ public class Assets
 		snowTile = sheet.crop(608, 0, width, height);
 		snowTree = sheet.crop(640, 0, width, height);
 		present = sheet.crop(672, 0, width, height);
+		blackTile = sheet.crop(960, 0, width, height);
+		whiteTile = sheet.crop(992, 0, width, height);
 		
 		
 		

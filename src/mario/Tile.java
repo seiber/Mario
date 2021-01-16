@@ -11,6 +11,9 @@ public class Tile
 	public static Tile rockTile = new RockTile(1);
 	public static Tile stoneTile = new StoneTile(2);
 	public static Tile snowTile = new SnowTile(3);
+	public static Tile whiteTile = new WhiteTile(4);
+	public static Tile blackTile = new BlackTile(5);
+	
 	
 	
 	public static final int TILEWIDTH=64, TILEHEIGHT=64;
