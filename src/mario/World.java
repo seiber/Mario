@@ -32,7 +32,7 @@ public class World
 		
 		//creature entities
 		entityManager.addEntity(new Grinch(handler, 400,500));
-		
+		entityManager.addEntity(new EnemyWanderBounds(handler, 400,500,width,height));
 		
 		loadWorld(path);
 		
