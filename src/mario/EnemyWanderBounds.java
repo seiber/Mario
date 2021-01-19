@@ -16,9 +16,7 @@ public class EnemyWanderBounds extends Creature
 		super(handler, x, y, width, height);
 		this.width=width;
 		this.height=height;
-		this.x=x;
-		this.y=y;
-
+	
 	
 	}
 	
@@ -26,10 +24,7 @@ public class EnemyWanderBounds extends Creature
 	public void createBounds()
 	{
 		boundingBox.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
-	
 	}
-
-	
 
 	public void tick() 
 	{
@@ -40,8 +35,7 @@ public class EnemyWanderBounds extends Creature
 	
 	public void render(Graphics g)
 	{
-				//start box 1
-			
+				//enemy wander box
 				g.drawRect((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
 	}
 

@@ -33,7 +33,7 @@ public class World
 		//creature entities
 		entityManager.addEntity(new Grinch(handler, 400,500));
 		
-		
+	
 		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);

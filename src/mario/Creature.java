@@ -45,7 +45,7 @@ public abstract class Creature extends Entity
 		
 		
 		
-		//grinch starts off moving right and down
+		//how many pixels in that direction to move
 			xMove= 0.5f;
 			yMove= 0.0f;
 			move();	

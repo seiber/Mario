@@ -9,6 +9,7 @@ public class Grinch extends Creature
 		
 	private EnemyWanderBounds e1;
 	private Rectangle grinch = new Rectangle();
+	private boolean moveDown = true;
 	
 	
 
@@ -18,11 +19,6 @@ public class Grinch extends Creature
 		
 		
 		e1 = new EnemyWanderBounds(handler,400,500,400,200);
-		e1.createBounds();
-		
-		//grinch wander range
-		grinch.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
-		
 		
 		//creating grinch collision bounds
 		bounds.x=16;
@@ -38,27 +34,53 @@ public class Grinch extends Creature
 			checkBounds();
 	}
 	
+	//creating wandering box and grinch box
+	public void createBounds()
+	{
+		//grinch box (getting x,y from where we create entity in world class)
+		grinch.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
+				
+		//wandering box for grinch
+		e1.createBounds();			
+	}
+	
 	//checking the bounds to make sure grinch is in the correct location
 	public void checkBounds()
 	{	
-	
-				//wander box
-				e1.createBounds();
-				System.out.println(e1.getCollisionBounds(x, y));
-	
+			createBounds();
+			System.out.println(grinch.getBounds());
+			
 		// if the bonding box area and grinch intersect, grinch is in the proper wandering space
 		if (e1.boundingBox.contains(grinch))
-		{	//wander
-			//y-=65;
-			x++;
+		{
+		
+			//wander
+		
+		 if (x <= 769)
+			{
+			 
+				x++;
+				moveDown=false;
+			}
+			
+			if(x >= 768 || x >= 769)
+			{
+					moveDown=true;
+				
+			}
+		if(moveDown=true)
+			{
+				y++;
+			}
 			System.out.println("in bounds");
 		}
-		
 	
-//		else
-//		{
-//			moveToBoundingBox();
-//		}
+		
+		else
+		{
+			//x--;
+			moveToBoundingBox();
+		}
 	}
 	
 	
@@ -71,9 +93,8 @@ public class Grinch extends Creature
 		g.drawImage(Assets.grinch, (int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height, null);
 		//grinch rectangle
 		g.drawRect((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height);
-		
+		//testing box
 		e1.render(g);
-		//e2.render(g);
 		
 	}
 
