@@ -32,8 +32,7 @@ public class World
 		
 		//creature entities
 		entityManager.addEntity(new Grinch(handler, 400,500));
-		
-	
+		entityManager.addEntity(new ShopKeeper(handler,1130,450,64,64));
 		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);

@@ -9,7 +9,7 @@ public class Assets
 	
 	
 	public static BufferedImage tree,dirtTile,santaHat,christmasTree,stoneTile,snowTile,snowTree,present,grinch,inventoryScreen,creature,musicOn,musicOff,whiteTile,blackTile;
-	public static BufferedImage [] player_down,player_right,player_left,player_up,start, attack_right,attack_left,idle,music,music1,controls,quit,back;
+	public static BufferedImage [] player_down,player_right,player_left,player_up,start, attack_right,attack_left,idle,music,music1,controls,quit,back,shopKeeper;
 	public static Font font28;
 	
 	
@@ -44,6 +44,9 @@ public class Assets
 		//creature animations
 		grinch = sheet2.crop(0, 0, width, height);
 		
+		shopKeeper = new BufferedImage[2];
+		shopKeeper[0] = sheet.crop(1024, 0, width, height);
+		shopKeeper[1] = sheet.crop(1056, 0, width, height);
 		
 		
 		//Sprite attack animations
