@@ -155,21 +155,23 @@ public class Player extends Creature
 		}
 	
 	}
-
+	
+	//display current player health on screen
+	public void displayPlayerHealth(Graphics g)
+	{
+		String currentHealth = "Health " +getHealth() + " / " + DEFAULT_HEALTH;
+		g.setColor(Color.RED);
+		g.drawString(currentHealth, 10, 10);
+		g.setColor(Color.BLACK);
+	}
 	
 	public void render(Graphics g) 
 	{
-		//type casting x,y to ints from orginial protected floats that extended from Entity class.
 	
-	
+		displayPlayerHealth(g);
 		g.drawImage(getCurrentAnimationFrame(),(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()), width, height, null);
 		
-		
-//		g.setColor(Color.red);
-//		g.fillRect((int)(x + bounds.x - handler.getGameCamera().getxOffset()),
-//				(int)(y + bounds.y - handler.getGameCamera().getyOffset()),
-//				bounds.width,bounds.height);	
-		}
+	}
 	
 	public void postRender(Graphics g)
 	{

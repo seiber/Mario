@@ -1,5 +1,7 @@
 package mario;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 
 public abstract class Creature extends Entity
@@ -178,5 +180,16 @@ public abstract class Creature extends Entity
 	{
 		this.speed = speed;
 	}
-
+	public void displayHealth(Graphics g)
+	{
+		String currentHealth = "Health " +getHealth() + " / " + DEFAULT_HEALTH;
+		g.setColor(Color.RED);
+		g.drawString(currentHealth, (int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()));
+		
+	}
+	public void displayCreatureHealth(Graphics g) 
+	{
+		displayHealth(g);
+		
+	}
 }

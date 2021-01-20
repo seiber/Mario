@@ -12,6 +12,7 @@ public class Grinch extends Creature
 	private boolean moveDown = true;
 	
 	
+	
 
 	public Grinch(Handler handler, float x, float y) 
 	{
@@ -95,6 +96,7 @@ public class Grinch extends Creature
 		g.drawRect((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height);
 		//testing box
 		e1.render(g);
+		displayCreatureHealth(g);
 		
 	}
 
