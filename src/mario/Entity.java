@@ -2,6 +2,7 @@ package mario;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 
 public abstract class Entity 
 {
@@ -13,6 +14,7 @@ public abstract class Entity
 	protected int health;
 	protected boolean active = true;
 	public static final int DEFAULT_HEALTH = 10;
+
 	
 
 	public abstract void tick();
@@ -22,6 +24,7 @@ public abstract class Entity
 	
 	public Entity(Handler handler,float x, float y,int width,int height)
 	{
+		
 		this.handler=handler;
 		this.x=x;
 		this.y=y;
@@ -29,6 +32,7 @@ public abstract class Entity
 		this.height=height;
 		bounds = new Rectangle(0,0,width,height);
 		health = DEFAULT_HEALTH;
+		
 		
 	}
 	
@@ -51,18 +55,30 @@ public abstract class Entity
 		//looping through all entities, searching for the one that is currently being interacted with
 		for (Entity e : handler.getWorld().getEntityManager().getEntities())
 				{
+		
+			//System.out.println(handler.getWorld().getEntityManager().getEntities().get(3));
 					if (e.equals(this))
 					{
+						
 						continue;
 					}
 					if (e.getCollisionBounds(0f,0f).intersects(getCollisionBounds(xOffset,yOffset)))
 					{
+									//shopkeeper 
+							if (e.equals(handler.getWorld().getEntityManager().getEntities().get(3)))
+							{
+						
+								System.out.println("shopkeeper collision and t press");
+							}
+						
+						
 						return true;
 					}
 					
 				}
 						return false;
 	}
+	
 	
 	public Rectangle getCollisionBounds(float xOffset, float yOffset)
 	{
@@ -133,7 +149,5 @@ public abstract class Entity
 		this.active = active;
 	}
 
-
 	
-			
 }

@@ -13,7 +13,7 @@ public class Player extends Creature
 	
 	//attack timer
 	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
-	
+	private Rectangle r;
 	private Inventory inventory;
 	
 	public Player(Handler handler, float x, float y) 
@@ -23,6 +23,7 @@ public class Player extends Creature
 		bounds.y=32;
 		bounds.width=20;
 		bounds.height=32;
+		
 
 			//in miliseconds 500 = half sec
 			//movement animations
@@ -35,7 +36,9 @@ public class Player extends Creature
 		//attacking animations (arrow keys)
 		attackRight = new Animation(500,Assets.attack_right);
 		attackLeft = new Animation(400,Assets.attack_left);
+		r = new Rectangle();
 		
+	
 		//inventory
 		inventory = new Inventory(handler);
 	
@@ -44,6 +47,7 @@ public class Player extends Creature
 
 	public void tick()
 	{
+		
 		animDown.tick();
 		animUp.tick();
 		animLeft.tick();
@@ -54,7 +58,6 @@ public class Player extends Creature
 		getInput();
 		move();
 		handler.getGameCamera().centerOnEntity(this);
-		
 		checkAttacks();
 		inventory.tick();
 	}
@@ -170,7 +173,9 @@ public class Player extends Creature
 	
 		displayPlayerHealth(g);
 		g.drawImage(getCurrentAnimationFrame(),(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		g.drawRect((int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()), width, height);
 		
+	
 	}
 	
 	public void postRender(Graphics g)
@@ -225,6 +230,18 @@ public class Player extends Creature
 		//return animDown.getCurrentFrame();
 	}
 
+	
+
+	public Rectangle getR()
+	{
+		return r;
+	}
+
+
+	public void setBounds(float x,float y,int width, int height)
+	{
+				r.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
+	}
 
 
 	public void die() 

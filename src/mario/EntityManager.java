@@ -9,6 +9,7 @@ public class EntityManager
 {
 	private Handler handler;
 	private Player player;
+	private ShopKeeper shopKeeper;
 	private ArrayList<Entity> entities;
 	private Comparator<Entity> renderSorter = new Comparator<Entity>() 
 	{

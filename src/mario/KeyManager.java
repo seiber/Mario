@@ -15,7 +15,7 @@ public class KeyManager implements KeyListener
 		justPressed = new boolean[keys.length];
 		cantPress = new boolean[keys.length];
 	}
-	
+
 	public void tick()
 	{
 		
@@ -37,9 +37,9 @@ public class KeyManager implements KeyListener
 				
 		}
 		
-		if(keyJustPressed(KeyEvent.VK_E))
+		if(keyJustPressed(KeyEvent.VK_T))
 		{
-			System.out.println("E key just pressed");
+			System.out.println("T key just pressed");
 		}
 		up = keys[KeyEvent.VK_W];
 		down = keys[KeyEvent.VK_S];

@@ -49,7 +49,7 @@ public class Grinch extends Creature
 	public void checkBounds()
 	{	
 			createBounds();
-			System.out.println(grinch.getBounds());
+			//System.out.println(grinch.getBounds());
 			
 		// if the bonding box area and grinch intersect, grinch is in the proper wandering space
 		if (e1.boundingBox.contains(grinch))
@@ -73,7 +73,7 @@ public class Grinch extends Creature
 			{
 				y++;
 			}
-			System.out.println("in bounds");
+			//System.out.println("in bounds");
 		}
 	
 		
