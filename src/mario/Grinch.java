@@ -7,7 +7,7 @@ public class Grinch extends Creature
 {
 	
 		
-	private EnemyWanderBounds e1;
+	 EnemyWanderBounds e1;
 	private Rectangle grinch = new Rectangle();
 	private boolean moveDown = true;
 	
@@ -18,7 +18,7 @@ public class Grinch extends Creature
 	{
 		super(handler, x, y,Creature.DEFAULT_CREATURE_WIDTH,Creature.DEFAULT_CREATURE_HEIGHT);
 		
-		
+		//bounding box 
 		e1 = new EnemyWanderBounds(handler,400,500,400,200);
 		
 		//creating grinch collision bounds

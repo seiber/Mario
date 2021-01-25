@@ -8,12 +8,13 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Creature
 {
-
+	
 	private Animation animDown,animLeft,animRight,animUp,attackRight,attackLeft,idle;
 	
 	//attack timer
 	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
-	private Rectangle r;
+	Rectangle player = new Rectangle();
+	private EnemyWanderBounds e2;
 	private Inventory inventory;
 	
 	public Player(Handler handler, float x, float y) 
@@ -23,6 +24,11 @@ public class Player extends Creature
 		bounds.y=32;
 		bounds.width=20;
 		bounds.height=32;
+		
+		//shopkeepers bounds
+		//e2 = new EnemyWanderBounds(handler,1130,450,64,64);
+		e2 = new EnemyWanderBounds(handler,1130,450,64,64);
+	
 		
 
 			//in miliseconds 500 = half sec
@@ -36,7 +42,7 @@ public class Player extends Creature
 		//attacking animations (arrow keys)
 		attackRight = new Animation(500,Assets.attack_right);
 		attackLeft = new Animation(400,Assets.attack_left);
-		r = new Rectangle();
+		
 		
 	
 		//inventory
@@ -47,7 +53,7 @@ public class Player extends Creature
 
 	public void tick()
 	{
-		
+		checkBounds();
 		animDown.tick();
 		animUp.tick();
 		animLeft.tick();
@@ -57,6 +63,7 @@ public class Player extends Creature
 		idle.tick();
 		getInput();
 		move();
+		
 		handler.getGameCamera().centerOnEntity(this);
 		checkAttacks();
 		inventory.tick();
@@ -172,9 +179,14 @@ public class Player extends Creature
 	{
 	
 		displayPlayerHealth(g);
+		//draws the player
 		g.drawImage(getCurrentAnimationFrame(),(int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()), width, height, null);
+		//testing box around player
 		g.drawRect((int)(x-handler.getGameCamera().getxOffset()),(int)(y-handler.getGameCamera().getyOffset()), width, height);
 		
+		//rectangle around shopkeeper
+		e2.render(g);
+	
 	
 	}
 	
@@ -232,18 +244,31 @@ public class Player extends Creature
 
 	
 
-	public Rectangle getR()
-	{
-		return r;
+	public void createBounds()
+	{			//player bounds from the world class, starts at 100,100,32,32 (spawn in point)
+				player.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
+				
+				//wandering box around shopkeeper
+				e2.createBounds();
 	}
 
 
-	public void setBounds(float x,float y,int width, int height)
+	
+	//check to see if player is in shop keeper trade range
+	public void checkBounds()
 	{
-				r.setBounds((int)(x-handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height);
+			createBounds();
+				
+		if(e2.boundingBox.contains(player));
+		{
+			//System.out.println(e2.boundingBox);
+					
+			System.out.println(player.getBounds());
+			System.out.println("player in range");
+		}	
 	}
-
-
+				
+	
 	public void die() 
 	{
 		System.out.println("die");
